@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>PD-FGC</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/codemirror.min.css">
+    <link rel="stylesheet" href="./assets/app.css">
+
+
+
+
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-20 text-center">
+                <br></br>
+                <b>UDE</b>: A Unified Driving Engine for Human Motion Generation<br>
+<!--                 <small>
+                    CVPR 2022 (Oral Presentation)
+                </small> -->
+            </h1>
+            <hr style="margin-top:0px">
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://zixiangzhou916.github.io/" style="font-size: 16px;">
+                            Zixiang Zhou
+                        </a>
+                        <!-- <sup>1</sup> -->
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/site/zjuwby/?pli=1" style="font-size: 16px;">
+                            Baoyuan Wang
+                        </a>
+                        <!-- <sup>1</sup> -->
+                    </li><br>
+                    <a></a><br>
+                    <li>
+                        <!-- <sup>1</sup> -->
+                        <a href="https://www.xiaoice.com/" style="font-size: 16px;">
+                            Xiaobing.ai
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href=""> # 
+                            <img src="./assets/paper-1.png" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                        </a>
+                    </li>
+
+                    <li>
+<!--                         <a onClick="alert('Code coming soon!\nContact dengyu2008@hotmail.com for more details.')"> -->
+                        <!-- <a href="https://github.com/dorniwang/PD-FGC"> -->
+                        <a>
+                            <img src="./assets/github.png" height="60px">
+                            <h4><strong>Code (coming soon)</strong></h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <a>
+                    <!-- <video style="width:100%;height:100%;" playsinline autoplay loop preload muted>
+                        <source src="./files/cover.mp4" type="video/mp4">
+                    </video> -->
+                    <img src="./assets/teaser.png" class="img-responsive" alt="teaser"><br>
+                    
+                </a>
+                <p class="text-justify" style="font-size: 16px;">
+                    Our shared Unified Driving Engine (UDE) can support both text-driven and audio-driven human motion generation. Left shows an example of a motion sequence driven by a text description while Right shows an example driven by a LA Hiphop music clip 
+                </p>
+                <br></br>
+                <h2>
+                    Abstract
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    Generating controllable and editable human motion sequences is a key challenge in 3D Avatar generation. It has been labor-intensive to generate and animate human motion for a long time until learning-based approaches have been developed and applied recently. However, these approaches are still task-specific or modality-specific. In this paper, we propose “UDE”, the first unified driving engine that enables generating human motion sequences from natural language or audio sequences. Specifically, UDE consists of the following key components: 1) a motion quantization module based on VQVAE that represents continuous motion sequence as discrete latent code, 2) a modality-agnostic transformer encoder that learns to map modality-aware driving signals to a joint space, and 3) a unified token transformer (GPT-like) network to predict the quantized latent code index in an auto-regressive manner. 4) a diffusion motion decoder that takes as input the motion tokens and decodes them into motion sequences with high diversity. We evaluate our method on HumanML3D and AIST++ benchmarks, and the experiment results demonstrate our method achieves state-of-the-art performance
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Video
+                </h2>
+                <hr style="margin-top:0px">
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/TQAo0HF_aSc" allowfullscreen=""
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Overview
+                </h2>
+                <hr style="margin-top:0px">
+                <img src="./assets/overview.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify" style="font-size: 16px;">
+                    The overview of our method. 
+                    Our model consists of four key components. First, we train a codebook using VQ-VAE. For the codebook, each code represents a certain pattern of the motion sequence. Second, we introduce a ModalityAgnostic Transformer Encoder (MATE). It takes the input
+                    of different modalities and transforms them into sequential embedding in one joint space. The third component
+                    is a Unified Token Transformer (UTT). We feed it with sequential embedding obtained by MATE and predict the
+                    motion token sequences in an auto-regressive manner. The fourth component is a Diffusion Motion Decoder (DMD).
+                    Unlike recent works, which are modality-specific, our DMD is modality-agnostic. Given the motion token sequences, DMD encodes them to semantic-rich embedding
+                    and then decodes them to motion sequences in continuous space by the reversed diffusion process
+                </p>
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="text-center">
+                    <h2>
+                        Citation
+                    </h2>
+                </div>
+                <hr style="margin-top:0px">
+                <div class="form-group col-md-12 col-md-offset-0">
+                    <div class="CodeMirror cm-s-default CodeMirror-wrap" style="font-size: 16px;">
+                        <div
+                            style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px; ">
+                            <textarea autocorrect="off" autocapitalize="off" spellcheck="false"
+                                style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"
+                                tabindex="0"></textarea></div>
+                        <div class="CodeMirror-vscrollbar" cm-not-content="true">
+                            <div style="min-width: 1px; height: 0px;"></div>
+                        </div>
+                        <div class="CodeMirror-hscrollbar" cm-not-content="true">
+                            <div style="height: 100%; min-height: 1px; width: 0px;"></div>
+                        </div>
+                        <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
+                        <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
+                        <div class="CodeMirror-scroll" tabindex="-1">
+                            <div class="CodeMirror-sizer"
+                                style="margin-left: 0px; margin-bottom: -17px; border-right-width: 13px; min-height: 162px; padding-right: 0px; padding-bottom: 0px;">
+                                <div style="position: relative; top: 0px;">
+                                    <div class="CodeMirror-lines">
+                                        <div style="position: relative; outline: none;">
+                                            <div class="CodeMirror-measure">AخA</div>
+                                            <div class="CodeMirror-measure"></div>
+                                            <div style="position: relative; z-index: 1;"></div>
+                                            <div class="CodeMirror-cursors">
+                                                <div class="CodeMirror-cursor"
+                                                    style="left: 4px; top: 0px; height: 17.1406px;">&nbsp;</div>
+                                            </div>
+                                            <div class="CodeMirror-code" style="">
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;">@article{wang2022pdfgc,</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  title={UDE: A Unified Driving Engine for Human Motion Generation },</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  author={Wang, Duomin and Deng, Yu and Yin, Zixin and Shum, Heung-Yeung and Wang, Baoyuan},</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  journal={arXiv:2211.14506},</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  year={2022}</span></pre>
+                                                <pre
+                                                    class=" CodeMirror-line "><span style="padding-right: 0.1px;">}</span></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; height: 13px; width: 1px; top: 280px;"></div>
+                            <div class="CodeMirror-gutters" style="display: none; height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <br></br>
+                <h2>
+                    Acknowledgements
+                </h2>
+                <hr style="margin-top:0px">
+                <p class="text-justify" style="font-size: 16px;">
+                    <!-- We thank Harry Shum for the fruitful advice and discussion to improve the paper. <br> -->
+                    The website template was adapted from <a href="https://yudeng.github.io/GRAM/">GRAM</a>.
+                </p>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
