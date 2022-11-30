@@ -1,10 +1,15 @@
 # Project page of "UDE: A Unified Driving Engine for Human Motion Generation"
 
+## [Project Website](https://zixiangzhou916.github.io/UDE/), [Paper](http://arxiv.org/abs/2211.16016), [Demo](https://www.youtube.com/embed/TQAo0HF_aSc)
+
+---
+
 ![plot](./assets/teaser.png)
 Our shared Unified Driving Engine (UDE) can support both text-driven and audio-driven human motion generation. Left shows an example of a motion sequence driven by a text description while Right shows an example driven by a LA Hiphop music clip 
 
 # Abstract
 #### Generating controllable and editable human motion sequences is a key challenge in 3D Avatar generation. It has been labor-intensive to generate and animate human motion for a long time until learning-based approaches have been developed and applied recently. However, these approaches are still task-specific or modality-specific. In this paper, we propose “UDE”, the first unified driving engine that enables generating human motion sequences from natural language or audio sequences. Specifically, UDE consists of the following key components: 1) a motion quantization module based on VQVAE that represents continuous motion sequence as discrete latent code, 2) a modality-agnostic transformer encoder that learns to map modality-aware driving signals to a joint space, and 3) a unified token transformer (GPT-like) network to predict the quantized latent code index in an auto-regressive manner. 4) a diffusion motion decoder that takes as input the motion tokens and decodes them into motion sequences with high diversity. We evaluate our method on HumanML3D and AIST++ benchmarks, and the experiment results demonstrate our method achieves state-of-the-art performance
+
 
 ![plot](./assets/overview.png)
 
