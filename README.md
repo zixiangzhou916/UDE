@@ -1,5 +1,9 @@
 # Project page of "UDE: A Unified Driving Engine for Human Motion Generation"
 
+## [Project Website](https://zixiangzhou916.github.io/UDE/), [Paper](http://arxiv.org/abs/2211.16016), [Demo](https://www.youtube.com/embed/TQAo0HF_aSc)
+
+--- 
+
 ![plot](./assets/teaser.png)
 Our shared Unified Driving Engine (UDE) can support both text-driven and audio-driven human motion generation. Left shows an example of a motion sequence driven by a text description while Right shows an example driven by a LA Hiphop music clip 
 
