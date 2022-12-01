@@ -1,6 +1,6 @@
 # Project page of "UDE: A Unified Driving Engine for Human Motion Generation"
 
-## [Project Website](https://zixiangzhou916.github.io/UDE/), [Paper](http://arxiv.org/abs/2211.16016), [Demo](https://www.youtube.com/embed/TQAo0HF_aSc)
+## [Project Website](https://zixiangzhou916.github.io/UDE/), [Paper](http://arxiv.org/abs/2211.16016), [Demo](https://www.youtube.com/embed/CaG1PTvzkxA)
 
 ---
 
@@ -19,7 +19,7 @@ Our shared Unified Driving Engine (UDE) can support both text-driven and audio-d
 
 # Demo
 
-#### We show a short demo video on how our model can generate motion sequence with mixed modality of inputs. To watch full demo video, please visit this site: (https://www.youtube.com/embed/TQAo0HF_aSc)
+#### We show a short demo video on how our model can generate motion sequence with mixed modality of inputs. To watch full demo video, please visit this site: (https://www.youtube.com/embed/CaG1PTvzkxA)
 
 <video src="./assets/v1.mp4" controls="controls" width="1920" height="1080"></video>
 
