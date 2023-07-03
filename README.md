@@ -33,10 +33,11 @@ Our shared Unified Driving Engine (UDE) can support both text-driven and audio-d
 
 # Citation
 
-@inproceedings{zhou2023ude,
-  title={Ude: A unified driving engine for human motion generation},
-  author={Zhou, Zixiang and Wang, Baoyuan},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={5632--5641},
-  year={2023}
+@InProceedings{Zhou_2023_CVPR, \
+$\qquad$ author    = {Zhou, Zixiang and Wang, Baoyuan}, \
+$\qquad$ title     = {UDE: A Unified Driving Engine for Human Motion Generation},\
+$\qquad$ booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\
+$\qquad$ month     = {June},\
+$\qquad$ year      = {2023},\
+$\qquad$ pages     = {5632-5641} \
 }
