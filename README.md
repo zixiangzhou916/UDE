@@ -1,5 +1,9 @@
 # Project page of "UDE: A Unified Driving Engine for Human Motion Generation"
 
+✨✨✨ Our paper has been accepted by CVPR2023
+
+---
+
 ## [Project Website](https://zixiangzhou916.github.io/UDE/), [Paper](http://arxiv.org/abs/2211.16016), [Demo](https://www.youtube.com/embed/CaG1PTvzkxA)
 
 ---
@@ -25,3 +29,14 @@ Our shared Unified Driving Engine (UDE) can support both text-driven and audio-d
 
 
 # Code comming soon!
+
+
+# Citation
+
+@inproceedings{zhou2023ude,
+  title={Ude: A unified driving engine for human motion generation},
+  author={Zhou, Zixiang and Wang, Baoyuan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={5632--5641},
+  year={2023}
+}
