@@ -1,0 +1,183 @@
+data:
+  
+  dataset:
+    module: dataset
+    dataset_name: "t2m"
+    amass_base_dir: "../dataset/HumanML3D/"
+    aist_base_dir: "../dataset/AIST++/"
+    # tokenizer_name: "dataset/vqude/VQMotionTokens_UDE_full_Efinal"
+    # m_token_dir:  "dataset/vqude/VQMotionTokens_UDE_full_Efinal"
+    tokenizer_name: "dataset/vqude/VQMotionTokens_HumanML3D_AIST_Efinal"
+    m_token_dir:  "dataset/vqude/VQMotionTokens_HumanML3D_AIST_Efinal"
+    amass_motion_dir: "../dataset/HumanML3D/joints_smpl_reorg"
+    # aist_motion_dir: "../dataset/AIST++/pose_data_smpl_aist_reorg_full"
+    aist_motion_dir: "../dataset/AIST++/pose_data_smpl_aist_reorg_full_vald"
+    text_dir: "../dataset/HumanML3D/texts/"
+    amass_window_size: 160
+    aist_window_size: 160
+    load_motion: false
+    is_train: true
+    feat_bias: 5
+    unit_length: 4
+
+    max_text_len: 20
+    txt_pad_idx: 4199
+    txt_end_idx: 1
+    
+    mot_start_idx: 2048   # code index of SOS
+    mot_end_idx: 2049     # code index of EOS
+    mot_pad_idx: 2050     # code index of POS
+    max_amass_motion_len: 55
+    max_aist_motion_len: 35
+
+    max_motion_frame: 196
+    max_amass_motion_token: 55
+    max_aist_motion_token: 35
+
+  loader:
+    workers: 0  # 16
+    batch_size: 1 # 24
+
+eval:
+  repeat_times: 3
+  num_results: 100
+  ta2m_checkpoint: "checkpoints/ude_best.pth"
+  vq_checkpoint: "checkpoints/vqvae_best.pth"
+  diffusion_checkpoint: "checkpoints/dmd_best.pth"
+
+losses:
+  vq: 1.0
+  rc: 1.0
+  disc: 0.1 # default: 0.1
+
+model:
+
+  vq_encoder:
+    arch: VQEncoder
+    input_size: 75
+    channels: [1024, 1024]
+    n_down: 2
+    hidden_dim: 2048
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.1
+    activation: "gelu"
+
+  vq_decoder:
+    arch: VQDecoder
+    input_size: 1024
+    channels: [1024, 1024, 75]
+    n_resblk: 3
+    n_up: 2
+    hidden_dims: 2048
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.1
+    activation: "gelu"
+
+  quantizer:
+    arch: Quantizer
+    n_e: 2048     # number codes in the codebook
+    e_dim: 1024   # dimension of each code
+    beta: 1.0
+
+  ude:
+    arch_path: '.ude'
+    arch_name: 'UDETransformer'
+
+    encoder:
+      arch_path: '.style_transformer'
+      arch_name: 'ConditionEncoderV1'
+      n_tokens: 2049
+      d_audio: 438
+      d_model: 512
+      d_inner: 1024
+      n_head: 8
+      n_layers: 8
+      dropout: 0.1
+
+    decoder:
+      d_model: 512
+      d_latent: 512
+      n_mlp: 1
+      l_latent: 1
+
+    gpt:
+      arch_path: '.cross_cond_gpt'
+      arch_name: 'CrossCondGPT'
+
+      gpt_base:
+        arch_path: '.cross_cond_gpt'
+        arch_name: 'CrossCondGPTBase'
+
+        d_model: 512
+        d_latent: 512
+        n_tokens: 2049  # 2048 + 1
+        n_positions: 1024
+        drop: 0.1
+        block_size: 160
+        attn_pdrop: 0.1
+        resid_pdrop: 0.1
+        n_layers: 6
+        n_head: 8
+
+      gpt_head:
+        arch_path: '.cross_cond_gpt'
+        arch_name: 'CrossCondGPTHead'
+
+        d_model: 512
+        d_latent: 512
+        n_tokens: 2049  # 2048 + 3
+        n_positions: 1024
+        drop: 0.1
+        block_size: 160
+        attn_pdrop: 0.1
+        resid_pdrop: 0.1
+        n_layers: 2
+        n_head: 8
+
+    clip:
+      name: ViT-B/32
+      download_root: checkpoints
+      jit: false
+
+  discriminator:
+    arch: DiscriminatorV1
+    input_dim: 75
+    cond_dim: 512
+    channels: [1024, 1024]
+    n_down: 2
+    num_heads: 8
+    hidden_dim: 2048
+    num_layers: 2
+    dropout: 0.1
+    activation: "gelu"
+
+  dmd:
+    arch_path: networks.diffusion_utils.gaussian_diffusion
+    arch_name: 'DDPM'
+
+    ddpm:
+      diffusion_steps: 1000
+      sampler: 'uniform'
+      beta_scheduler: 'linear'
+    # 
+    diffusion_model:
+      arch: 'MotionTransformer'
+
+      num_tokens: 2048 
+      input_feats: 75
+      num_frames: 240
+      latent_dim: 512
+      cond_latent_dim: 512
+      ff_size: 1024
+      num_layers: 8
+      num_heads: 8
+      dropout: 0.0
+      activation: "gelu"
+      num_motion_layers: 4
+      motion_latent_dim: 512
+      motion_ff_size: 2048
+      motion_num_heads: 4
+      no_eff: false
+      decoder_arch: "trans_enc"
