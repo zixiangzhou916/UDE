@@ -1,6 +1,8 @@
 # Project page of "UDE: A Unified Driving Engine for Human Motion Generation"
 
-✨✨✨ Our paper has been accepted by CVPR2023
+💥💥💥 The demo code is now available!!!
+
+✨✨✨ Our paper has been accepted by CVPR2023!
 
 ---
 
@@ -28,8 +30,76 @@ Our shared Unified Driving Engine (UDE) can support both text-driven and audio-d
 <video src="./assets/v1.mp4" controls="controls" width="1920" height="1080"></video>
 
 
-# Code comming soon!
+# Getting started
 
+This code was tested on Ubuntu 20.04 LTS and requires:
+* Python 3.8
+* Conda
+* CUDA capable GPU (single GPU works!)
+
+
+### 1. Setup enviroment
+
+Clone this repo and move it to: 
+
+    git clone https://github.com/zixiangzhou916/UDE.git
+    cd UDE
+
+Create a conda enviroment, activate it, and install the dependencies:
+
+    pip install -r requirements.txt
+
+### 2. Pretrained model downloading
+
+The pretrained checkpoints could be downloaded from [checkpoint](https://drive.google.com/drive/folders/13aLxNhgEOwxIkdT-taH7Ig-4j4ObJAaB?usp=sharing). 
+
+    tar -xzvf checkpoints.tar.gz
+    tar -xzvf smpl_models.tar.gz
+
+The unzipped checkpoint files will be organized as:
+    
+    checkpoints
+    |--- ude_best.pth
+    |--- dmd_best.pth
+    |--- vqvae_best.pth
+    |--- ViT-B-32.pt
+
+Unzip the files and put move the smpl_models:
+
+    mv smpl networks
+
+The smpl models should be organized as:
+
+    |networks
+    |--- smpl
+        |--- J_regressor_extra.npy
+        |--- kintree_table.pkl
+        |--- SMPL_FEMALE.pkl
+        |--- SMPL_MALE.pkl
+        |--- SMPL_NEUTRAL.pkl
+
+### 3. Run the demo
+
+We provide sample data for quick demo, the sample data are organized as:
+
+    |sample_data
+    |--- t2m
+        |--- text_descriptions.json
+    |--- a2m
+        |--- gHO_sBM_cAll_d21_mHO5_ch01.npy
+        |--- 
+
+Run the following command to play with it:
+
+    sh demo.sh
+
+### 4. Train your own UDE
+
+    Comming soon
+
+### 5. Evaluate the model
+
+    Comming soon
 
 # Citation
 
